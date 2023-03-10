@@ -1,0 +1,20 @@
+version: '3.3'
+services:
+  guacd:
+    image: dushixiang/guacd:1.3.0
+    volumes:
+      - /usr/local/next-terminal/data
+    restart:
+          always
+  webconsole:
+    image: dushixiang/next-terminal:v1.2.2
+    environment:
+      DB: sqlite
+      GUACD_HOSTNAME: guacd
+      GUACD_PORT: 4822
+    ports:
+      - "8080:8088"
+    volumes:
+      - /usr/local/next-terminal/data
+    restart:
+      always
